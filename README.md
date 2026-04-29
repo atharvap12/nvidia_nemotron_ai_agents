@@ -1,6 +1,6 @@
-# ai-agent-fundamentals
+# nvidia_nemotron_ai_agents
 
-Hands-on examples covering AI agent fundamentals: a shopping agent, guardrails, and evaluation.
+Hands-on examples covering AI agent fundamentals: a shopping agent, guardrails, and evaluation — powered by Nvidia Nemotron via OpenRouter.
 
 ## Prerequisites
 
@@ -12,8 +12,8 @@ Hands-on examples covering AI agent fundamentals: a shopping agent, guardrails, 
 ### 1. Clone the repo
 
 ```bash
-git clone <repo-url>
-cd ai-agent-fundamentals
+git clone https://github.com/atharvap12/nvidia_nemotron_ai_agents.git
+cd nvidia_nemotron_ai_agents
 ```
 
 ### 2. Configure environment variables
@@ -26,12 +26,14 @@ Open `.env` and fill in your API keys:
 
 ```
 GROQ_API_KEY=<your groq key here>
+OPENROUTER_API_KEY=<your openrouter key here>
 LANGSMITH_API_KEY=<your langsmith key here>
 ```
 
 | Key | Where to get it |
 |-----|----------------|
-| `GROQ_API_KEY` | [console.groq.com](https://console.groq.com)  |
+| `GROQ_API_KEY` | [console.groq.com](https://console.groq.com) |
+| `OPENROUTER_API_KEY` | [openrouter.ai/keys](https://openrouter.ai/keys) |
 | `LANGSMITH_API_KEY` | [smith.langchain.com](https://smith.langchain.com) |
 
 ### 3. Install dependencies
@@ -61,10 +63,10 @@ source .venv/bin/activate
 
 ### 1. Shopping Agent
 
-First, set up the database, then start the API server and agent:
+Set up the database, then run the agent:
 
 ```bash
-# In another terminal — run the shopping agent
+python 1_shopping_agent/setup_db.py
 python 1_shopping_agent/shopping_agent.py
 ```
 
@@ -77,18 +79,23 @@ python 2_guardrails/guardrails.py
 ### 3. Evaluation
 
 ```bash
-# Run functional evaluation
 python 3_eval/func_eval.py
+```
 
+### 4. Nvidia Nemotron (reasoning demo)
+
+```bash
+python nvidia_nemotron.py
 ```
 
 ## Project structure
 
 ```
-ai-agent-fundamentals/
+nvidia_nemotron_ai_agents/
 ├── 1_shopping_agent/     # Tool-calling agent with a product reviews API
-├── 2_guardrails/         # Input/output guardrail patterns
+├── 2_guardrails/         # PII guardrail patterns (mask/redact)
 ├── 3_eval/               # Agent evaluation with LangSmith
+├── nvidia_nemotron.py    # Nvidia Nemotron reasoning demo (multi-turn)
 ├── sample.env            # Template for environment variables
 └── pyproject.toml        # Project dependencies (managed by uv)
 ```
